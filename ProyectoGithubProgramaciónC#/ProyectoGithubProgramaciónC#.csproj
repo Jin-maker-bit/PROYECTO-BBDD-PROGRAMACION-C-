@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bbdd\Conexion.cs" />
     <Compile Include="vistas\InformeCinco.cs">
       <SubType>Form</SubType>
     </Compile>
