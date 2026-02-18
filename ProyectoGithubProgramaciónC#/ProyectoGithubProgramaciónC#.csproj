@@ -84,6 +84,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="InformeCinco.resx">
+      <DependentUpon>InformeCinco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeCuatro.resx">
+      <DependentUpon>InformeCuatro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeDos.resx">
+      <DependentUpon>InformeDos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeTres.resx">
+      <DependentUpon>InformeTres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformeUno.resx">
+      <DependentUpon>InformeUno.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
