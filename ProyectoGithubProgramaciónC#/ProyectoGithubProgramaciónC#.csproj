@@ -46,57 +46,57 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InformeCinco.cs">
+    <Compile Include="vistas\InformeCinco.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformeCinco.Designer.cs">
+    <Compile Include="vistas\InformeCinco.Designer.cs">
       <DependentUpon>InformeCinco.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformeCuatro.cs">
+    <Compile Include="vistas\InformeCuatro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformeCuatro.Designer.cs">
+    <Compile Include="vistas\InformeCuatro.Designer.cs">
       <DependentUpon>InformeCuatro.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformeDos.cs">
+    <Compile Include="vistas\InformeDos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformeDos.Designer.cs">
+    <Compile Include="vistas\InformeDos.Designer.cs">
       <DependentUpon>InformeDos.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformeTres.cs">
+    <Compile Include="vistas\InformeTres.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformeTres.Designer.cs">
+    <Compile Include="vistas\InformeTres.Designer.cs">
       <DependentUpon>InformeTres.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformeUno.cs">
+    <Compile Include="vistas\InformeUno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="InformeUno.Designer.cs">
+    <Compile Include="vistas\InformeUno.Designer.cs">
       <DependentUpon>InformeUno.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentanaPrincipal.cs">
+    <Compile Include="vistas\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentanaPrincipal.Designer.cs">
-      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    <Compile Include="vistas\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="InformeCinco.resx">
+    <EmbeddedResource Include="vistas\InformeCinco.resx">
       <DependentUpon>InformeCinco.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformeCuatro.resx">
+    <EmbeddedResource Include="vistas\InformeCuatro.resx">
       <DependentUpon>InformeCuatro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformeDos.resx">
+    <EmbeddedResource Include="vistas\InformeDos.resx">
       <DependentUpon>InformeDos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformeTres.resx">
+    <EmbeddedResource Include="vistas\InformeTres.resx">
       <DependentUpon>InformeTres.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformeUno.resx">
+    <EmbeddedResource Include="vistas\InformeUno.resx">
       <DependentUpon>InformeUno.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -108,8 +108,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="VentanaPrincipal.resx">
-      <DependentUpon>VentanaPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="vistas\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

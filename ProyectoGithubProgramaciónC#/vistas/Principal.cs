@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProyectoGithubProgramaciónC_
 {
-    public partial class VentanaPrincipal : Form
+    public partial class Principal : Form
     {
-        public VentanaPrincipal()
+        public Principal()
         {
             InitializeComponent();
         }
