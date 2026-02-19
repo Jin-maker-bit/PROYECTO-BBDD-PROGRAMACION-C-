@@ -49,9 +49,8 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
-        // PRINCIPAL - TOTALES (UNA SOLA CONSULTA)
-        // ======================================================
+        // PRINCIPAL - TOTALES
+
 
         public static void obtenerTotales(out int totalLibros, out int totalVolumenes, out int totalVentas)
         {
@@ -91,9 +90,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // PRINCIPAL - TOP 3 TIENDA
-        // ======================================================
 
         public static void CargarGridTop3Tienda(DataGridView dgv)
         {
@@ -124,9 +121,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // PRINCIPAL - TOP 3 ONLINE
-        // ======================================================
 
         public static void CargarGridTop3Online(DataGridView dgv)
         {
@@ -157,9 +152,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 1 - TOP 10 EDITORIALES
-        // ======================================================
 
         public static void CargarGridInforme1(DataGridView dgv)
         {
@@ -190,9 +183,8 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 2 - FACTURACION VENDEDORES ACTIVOS
-        // ======================================================
+
 
         public static void CargarGridInforme2_Vendedores(DataGridView dgv)
         {
@@ -222,9 +214,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 2 - PLATAFORMAS
-        // ======================================================
 
         public static void CargarGridInforme2_Plataformas(DataGridView dgv)
         {
@@ -254,9 +244,8 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 3 - VOLUMENES POR UBICACION SEGUN SECCION (1..9)
-        // ======================================================
+
 
         public static void CargarGridInforme3(DataGridView dgv, int seccion)
         {
@@ -287,9 +276,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 4 - CCAA Y LIBROS EDITADOS
-        // ======================================================
 
         public static void CargarGridInforme4(DataGridView dgv)
         {
@@ -319,9 +306,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // ======================================================
         // INFORME 5 - TOP 5 CIUDADES
-        // ======================================================
 
         public static void CargarGridInforme5(DataGridView dgv)
         {
