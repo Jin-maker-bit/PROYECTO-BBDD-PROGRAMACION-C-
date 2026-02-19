@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoGithubProgramaciónC_.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace ProyectoGithubProgramaciónC_
         public InformeCuatro()
         {
             InitializeComponent();
+        }
+
+        private void InformeCuatro_Load(object sender, EventArgs e)
+        {
+            Conexion.CargarGridInforme4(dataGridView2);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoGithubProgramaciónC_.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,13 @@ namespace ProyectoGithubProgramaciónC_
         public InformeDos()
         {
             InitializeComponent();
+            Conexion.CargarGridInforme2_Vendedores(dataGridView3);
+            Conexion.CargarGridInforme2_Plataformas(dataGridView4);
+        }
+
+        private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

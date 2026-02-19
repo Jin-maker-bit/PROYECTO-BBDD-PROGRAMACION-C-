@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoGithubProgramaciónC_.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,16 @@ namespace ProyectoGithubProgramaciónC_
         public InformeUno()
         {
             InitializeComponent();
+        }
+
+        private void InformeUno_Load(object sender, EventArgs e)
+        {
+            Conexion.CargarGridInforme1(dataGridView1);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

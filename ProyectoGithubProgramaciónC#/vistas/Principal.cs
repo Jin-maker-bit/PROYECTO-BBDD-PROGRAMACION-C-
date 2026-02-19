@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProyectoGithubProgramaciónC_.bbdd;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,18 @@ namespace ProyectoGithubProgramaciónC_
         public Principal()
         {
             InitializeComponent();
+            Conexion.CargarGridTop3Tienda(dataGridView1);
+            Conexion.CargarGridTop3Online(dataGridView2);
+
+            int totalLibros;
+            int totalVolumenes;
+            int totalVentas;
+
+            Conexion.obtenerTotales(out totalLibros, out totalVolumenes, out totalVentas);
+
+            campoLibros.Text = totalLibros.ToString();
+            campoVolumenes.Text = totalVolumenes.ToString();
+            campoVentas.Text = totalVentas.ToString();
         }
 
         private void informe1_Click(object sender, EventArgs e)
@@ -45,6 +58,11 @@ namespace ProyectoGithubProgramaciónC_
         {
             InformeCinco i = new InformeCinco();
             i.ShowDialog();
+        }
+
+        private void Principal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
