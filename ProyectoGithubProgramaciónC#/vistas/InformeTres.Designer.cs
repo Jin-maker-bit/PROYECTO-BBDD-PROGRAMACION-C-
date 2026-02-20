@@ -38,6 +38,7 @@
             this.comboSeccion = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.campoTotal = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -158,12 +159,24 @@
             this.campoTotal.TabIndex = 11;
             this.campoTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(12, 390);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(225, 25);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "TOTAL VOLUMENES";
+            // 
             // InformeTres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(962, 563);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.campoTotal);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboSeccion);
@@ -195,5 +208,6 @@
         private System.Windows.Forms.ComboBox comboSeccion;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label campoTotal;
+        private System.Windows.Forms.Label label4;
     }
 }

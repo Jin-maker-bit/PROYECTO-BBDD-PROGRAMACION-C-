@@ -1,11 +1,8 @@
-﻿using MySqlConnector;
+﻿
+
+using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoGithubProgramaciónC_.bbdd
@@ -247,15 +244,17 @@ namespace ProyectoGithubProgramaciónC_.bbdd
         // INFORME 3 - VOLUMENES POR UBICACION SEGUN SECCION (1..9)
 
 
-        public static void CargarGridInforme3(DataGridView dgv, int seccion)
+        public static int CargarGridInforme3(DataGridView dgv, int piso)
         {
+            int total = 0;
+
             string consulta =
                 "SELECT u.ubicacion AS UBICACION, COALESCE(SUM(l.stock),0) AS VOLUMENES " +
                 "FROM libros l " +
-                "INNER JOIN ubicacion u ON u.ubicacion = l.codUbicacion " +
-                "WHERE l.idClasificacion = " + seccion + " " +
+                "INNER JOIN ubicacion u ON l.codUbicacion = u.ubicacion " +
+                "WHERE CAST(REGEXP_SUBSTR(u.ubicacion, '^[0-9]+') AS UNSIGNED) = " + piso + " " +
                 "GROUP BY u.ubicacion, u.descripcion " +
-                "ORDER BY VOLUMENES DESC;";
+                "ORDER BY REGEXP_SUBSTR(u.ubicacion, '[A-Za-z]+$');";
 
             conectar();
 
@@ -264,17 +263,25 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 MySqlDataAdapter da = new MySqlDataAdapter(consulta, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
+
                 dgv.DataSource = dt;
+
+                foreach (DataRow row in dt.Rows)
+                    total += Convert.ToInt32(row["VOLUMENES"]);
             }
             catch (MySqlException e)
             {
                 MessageBox.Show("Error al cargar Informe 3.\n" + e.Message);
+                total = 0;
             }
             finally
             {
                 cerrarConexion();
             }
+
+            return total;
         }
+
 
         // INFORME 4 - CCAA Y LIBROS EDITADOS
 

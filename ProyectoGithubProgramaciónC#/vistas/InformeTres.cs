@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ProyectoGithubProgramaciónC_
 {
@@ -43,21 +44,24 @@ namespace ProyectoGithubProgramaciónC_
             cargando = false;
         }
 
+      
+
         private void comboSeccion_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cargando) return;
 
-            
             if (comboSeccion.SelectedIndex == 0)
             {
                 dataGridView2.DataSource = null;
+                campoTotal.Text = "Total de volúmenes: 0";
                 return;
             }
 
-            int seccion = Convert.ToInt32(comboSeccion.SelectedItem);
-            Conexion.CargarGridInforme3(dataGridView2, seccion);
-        }
+            int piso = Convert.ToInt32(comboSeccion.SelectedItem);
 
-        
+            int total = Conexion.CargarGridInforme3(dataGridView2, piso);
+
+            campoTotal.Text = total.ToString();
+        }
     }
 }
