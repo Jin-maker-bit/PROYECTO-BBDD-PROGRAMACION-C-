@@ -19,7 +19,7 @@ namespace ProyectoGithubProgramaciónC_
         {
             InitializeComponent();
 
-            // ✅ Enganchar evento por código (aunque en el diseñador no esté)
+            
             comboSeccion.SelectedIndexChanged += comboSeccion_SelectedIndexChanged;
             this.Load += InformeTres_Load;
         }

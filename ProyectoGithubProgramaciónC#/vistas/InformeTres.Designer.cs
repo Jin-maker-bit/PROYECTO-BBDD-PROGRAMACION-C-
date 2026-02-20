@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.comboSeccion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.campoTotal = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -136,12 +138,34 @@
             this.comboSeccion.Size = new System.Drawing.Size(172, 24);
             this.comboSeccion.TabIndex = 8;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 390);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(0, 16);
+            this.label3.TabIndex = 9;
+            // 
+            // campoTotal
+            // 
+            this.campoTotal.BackColor = System.Drawing.Color.Black;
+            this.campoTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.campoTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.campoTotal.ForeColor = System.Drawing.Color.White;
+            this.campoTotal.Location = new System.Drawing.Point(44, 430);
+            this.campoTotal.Name = "campoTotal";
+            this.campoTotal.Size = new System.Drawing.Size(172, 49);
+            this.campoTotal.TabIndex = 11;
+            this.campoTotal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InformeTres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
             this.ClientSize = new System.Drawing.Size(962, 563);
+            this.Controls.Add(this.campoTotal);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.comboSeccion);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label2);
@@ -169,5 +193,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox comboSeccion;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label campoTotal;
     }
 }

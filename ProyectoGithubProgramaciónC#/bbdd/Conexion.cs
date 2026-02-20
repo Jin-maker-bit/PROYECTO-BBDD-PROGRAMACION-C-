@@ -250,7 +250,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
         public static void CargarGridInforme3(DataGridView dgv, int seccion)
         {
             string consulta =
-                "SELECT u.descripcion AS UBICACION, COALESCE(SUM(l.stock),0) AS VOLUMENES " +
+                "SELECT u.ubicacion AS UBICACION, COALESCE(SUM(l.stock),0) AS VOLUMENES " +
                 "FROM libros l " +
                 "INNER JOIN ubicacion u ON u.ubicacion = l.codUbicacion " +
                 "WHERE l.idClasificacion = " + seccion + " " +
