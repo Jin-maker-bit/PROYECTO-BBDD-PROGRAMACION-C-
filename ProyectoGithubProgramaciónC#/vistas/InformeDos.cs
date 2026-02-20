@@ -17,7 +17,7 @@ namespace ProyectoGithubProgramaciónC_
         {
             InitializeComponent();
             Conexion.CargarGridInforme2_Vendedores(dataGridView3);
-            Conexion.CargarGridInforme2_Plataformas(dataGridView4);
+            Conexion.CargarGridInforme2_LibrosPlataformas(dataGridView4);
         }
 
         private void dataGridView3_CellContentClick(object sender, DataGridViewCellEventArgs e)

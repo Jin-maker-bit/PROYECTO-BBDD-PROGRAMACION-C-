@@ -12,11 +12,11 @@ namespace ProyectoGithubProgramaciónC_.bbdd
         private static MySqlConnection conn;
 
         private static readonly string url =
-            "Server=127.0.0.1;" +
-            "Database=ventaslibreria;" +
-            "User=root;" +
-            "Port=3307;" +
-            "Password=;";
+            "Server=195.35.53.72;" +
+            "Database=u812167471_grupo5;" +
+            "User=u812167471_grupo5;" +
+            "Port=3306;" +
+            "Password=2026-Grupo5;";
 
         public static void conectar()
         {
@@ -180,16 +180,18 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // INFORME 2 - FACTURACION VENDEDORES ACTIVOS
-
-
+        // INFORME 2 - FACTURACION VENDEDORES ACTIVOS (VENDEDOR, FACTURACION €, ESTADO)
         public static void CargarGridInforme2_Vendedores(DataGridView dgv)
         {
             string consulta =
-                "SELECT v.nombre AS VENDEDOR, ROUND(SUM(vt.precio), 2) AS FACTURACION " +
+                "SELECT v.nombre AS VENDEDOR, " +
+                "       SUM(vt.precio) AS FACTURACION, " +
+                "       e.estado AS ESTADO " +
                 "FROM vendedores v " +
+                "INNER JOIN estados e ON v.idEstado = e.idEstado " +
                 "INNER JOIN ventas_tienda vt ON vt.codVendedor = v.codVendedor " +
-                "GROUP BY v.codVendedor, v.nombre " +
+                "WHERE e.estado = 'Activo' " +
+                "GROUP BY v.codVendedor, v.nombre, e.estado " +
                 "ORDER BY FACTURACION DESC;";
 
             conectar();
@@ -200,6 +202,13 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;
+
+                
+                if (dgv.Columns["FACTURACION"] != null)
+                {
+                    dgv.Columns["FACTURACION"].DefaultCellStyle.Format = "0.00 €";
+                    dgv.Columns["FACTURACION"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
             catch (MySqlException e)
             {
@@ -211,16 +220,15 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // INFORME 2 - PLATAFORMAS
-
-        public static void CargarGridInforme2_Plataformas(DataGridView dgv)
+        // INFORME 2 - LIBROS Y PLATAFORMAS 
+        public static void CargarGridInforme2_LibrosPlataformas(DataGridView dgv)
         {
             string consulta =
-                "SELECT p.nombre AS PLATAFORMA, ROUND(SUM(vo.precio), 2) AS FACTURACION " +
-                "FROM plataformas p " +
-                "INNER JOIN ventas_online vo ON vo.idPlataforma = p.idPlataforma " +
-                "GROUP BY p.idPlataforma, p.nombre " +
-                "ORDER BY FACTURACION DESC;";
+                "SELECT l.titulo AS LIBRO, p.nombre AS PLATAFORMAS " +
+                "FROM ventas_online vo " +
+                "INNER JOIN libros l ON vo.idLibro = l.idLibro " +
+                "INNER JOIN plataformas p ON vo.idPlataforma = p.idPlataforma " +
+                "ORDER BY p.nombre, l.titulo;";
 
             conectar();
 
@@ -233,14 +241,13 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error al cargar Informe 2 (Plataformas).\n" + e.Message);
+                MessageBox.Show("Error al cargar Informe 2 (Libros/Plataformas).\n" + e.Message);
             }
             finally
             {
                 cerrarConexion();
             }
         }
-
         // INFORME 3 - VOLUMENES POR UBICACION SEGUN SECCION (1..9)
 
 
