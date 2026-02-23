@@ -237,20 +237,18 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // INFORME 2 - LIBROS Y PLATAFORMAS
+        // INFORME 2 - FACTURACIÓN POR PLATAFORMA
 
-
-        // Carga en el DataGridView la relación de libros vendidos online
-        // junto con la plataforma a través de la cual se realizó cada venta,
-        // ordenados por nombre de plataforma y título del libro
+        // Carga en el DataGridView la facturación total agrupada por plataforma,
+        // ordenada de mayor a menor facturación.
         public static void CargarGridInforme2_LibrosPlataformas(DataGridView dgv)
         {
             string consulta =
-                "SELECT l.titulo AS LIBRO, p.nombre AS PLATAFORMAS " +
-                "FROM ventas_online vo " +
-                "INNER JOIN libros l ON vo.idLibro = l.idLibro " +
-                "INNER JOIN plataformas p ON vo.idPlataforma = p.idPlataforma " +
-                "ORDER BY p.nombre, l.titulo;";
+                "SELECT p.nombre AS PLATAFORMA, " +
+                "       SUM(vo.precio) AS CANTIDAD " +
+                "FROM plataformas p " +
+                "INNER JOIN ventas_online vo ON p.idPlataforma = vo.idPlataforma " +
+                "GROUP BY p.idPlataforma, p.nombre ";
 
             conectar();
 
@@ -260,10 +258,20 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dgv.DataSource = dt;
+
+                // Renombrar columna y aplicar formato monetario
+                if (dt.Columns["FACTURACION_TOTAL"] != null)
+                    dt.Columns["FACTURACION_TOTAL"].ColumnName = "FACTURACION TOTAL";
+
+                if (dgv.Columns["FACTURACION TOTAL"] != null)
+                {
+                    dgv.Columns["FACTURACION TOTAL"].DefaultCellStyle.Format = "0.00 €";
+                    dgv.Columns["FACTURACION TOTAL"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error al cargar Informe 2 (Libros/Plataformas).\n" + e.Message);
+                MessageBox.Show("Error al cargar Informe 2 (Plataformas).\n" + e.Message);
             }
             finally
             {
@@ -271,9 +279,9 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        
+
         // INFORME 3 - VOLÚMENES POR UBICACIÓN SEGÚN SECCIÓN (1..9)
-       
+
 
         // Carga en el DataGridView los volúmenes de libros agrupados por ubicación
         // dentro de la sección indicada como parámetro.
