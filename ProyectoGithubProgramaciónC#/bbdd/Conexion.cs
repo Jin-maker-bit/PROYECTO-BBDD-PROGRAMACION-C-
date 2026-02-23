@@ -1,16 +1,16 @@
-﻿
-
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
 using System.Windows.Forms;
 
 namespace ProyectoGithubProgramaciónC_.bbdd
 {
+    // Clase que gestiona la conexión y las consultas a la base de datos MySQL
     internal class Conexion
     {
         private static MySqlConnection conn;
 
+        // Parámetros del servidor remoto
         private static readonly string url =
             "Server=195.35.53.72;" +
             "Database=u812167471_grupo5;" +
@@ -18,6 +18,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             "Port=3306;" +
             "Password=2026-Grupo5;";
 
+        // Abre la conexión con la base de datos
         public static void conectar()
         {
             try
@@ -31,6 +32,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
+        // Cierra la conexión con la base de datos 
         public static void cerrarConexion()
         {
             if (conn != null)
@@ -48,13 +50,15 @@ namespace ProyectoGithubProgramaciónC_.bbdd
 
         // PRINCIPAL - TOTALES
 
-
+        // Obtiene tres contadores globales: total de libros, total de volúmenes en stock
+        // y total de ventas combinadas (tienda y online). Se devuelven como parámetros de salida.
         public static void obtenerTotales(out int totalLibros, out int totalVolumenes, out int totalVentas)
         {
             totalLibros = 0;
             totalVolumenes = 0;
             totalVentas = 0;
 
+            // Consulta que agrupa las tres subconsultas
             string consulta =
                 "SELECT " +
                 "(SELECT COUNT(*) FROM libros) AS totalLibros, " +
@@ -68,6 +72,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 MySqlCommand comando = new MySqlCommand(consulta, conn);
                 MySqlDataReader reader = comando.ExecuteReader();
 
+                
                 if (reader.Read())
                 {
                     totalLibros = reader.GetInt32(0);
@@ -87,8 +92,11 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
+        
         // PRINCIPAL - TOP 3 TIENDA
 
+        // Carga en el DataGridView los 3 libros más vendidos en tienda física,
+        // ordenados de mayor a menor número de ventas
         public static void CargarGridTop3Tienda(DataGridView dgv)
         {
             string consulta =
@@ -120,6 +128,8 @@ namespace ProyectoGithubProgramaciónC_.bbdd
 
         // PRINCIPAL - TOP 3 ONLINE
 
+        // Carga en el DataGridView los 3 libros más vendidos por canal online,
+        // ordenados de mayor a menor número de ventas
         public static void CargarGridTop3Online(DataGridView dgv)
         {
             string consulta =
@@ -150,7 +160,10 @@ namespace ProyectoGithubProgramaciónC_.bbdd
         }
 
         // INFORME 1 - TOP 10 EDITORIALES
+        
 
+        // Carga en el DataGridView las 10 editoriales con mayor número de libros
+        // registrados en el catálogo, ordenadas de mayor a menor
         public static void CargarGridInforme1(DataGridView dgv)
         {
             string consulta =
@@ -180,7 +193,11 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // INFORME 2 - FACTURACION VENDEDORES ACTIVOS (VENDEDOR, FACTURACION €, ESTADO)
+        // INFORME 2 - FACTURACIÓN VENDEDORES ACTIVOS
+
+        // Carga en el DataGridView la facturación total de cada vendedor con estado activo,
+        // calculada como la suma de los precios de sus ventas en tienda, ordenada de mayor a menor.
+        // Aplica formato monetario con dos decimales a la columna de facturación.
         public static void CargarGridInforme2_Vendedores(DataGridView dgv)
         {
             string consulta =
@@ -203,7 +220,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 da.Fill(dt);
                 dgv.DataSource = dt;
 
-                
+                // Se aplica formato visual con símbolo de euro y alineación a la derecha
                 if (dgv.Columns["FACTURACION"] != null)
                 {
                     dgv.Columns["FACTURACION"].DefaultCellStyle.Format = "0.00 €";
@@ -220,7 +237,12 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
-        // INFORME 2 - LIBROS Y PLATAFORMAS 
+        // INFORME 2 - LIBROS Y PLATAFORMAS
+
+
+        // Carga en el DataGridView la relación de libros vendidos online
+        // junto con la plataforma a través de la cual se realizó cada venta,
+        // ordenados por nombre de plataforma y título del libro
         public static void CargarGridInforme2_LibrosPlataformas(DataGridView dgv)
         {
             string consulta =
@@ -248,12 +270,19 @@ namespace ProyectoGithubProgramaciónC_.bbdd
                 cerrarConexion();
             }
         }
-        // INFORME 3 - VOLUMENES POR UBICACION SEGUN SECCION (1..9)
 
+        
+        // INFORME 3 - VOLÚMENES POR UBICACIÓN SEGÚN SECCIÓN (1..9)
+       
 
+        // Carga en el DataGridView los volúmenes de libros agrupados por ubicación
+        // dentro de la sección indicada como parámetro.
+        // Utiliza una expresión regular para extraer el número de sección del código de ubicación.
+        // Devuelve el total acumulado de volúmenes de dicha sección.
         public static int CargarGridInforme3(DataGridView dgv, int piso)
         {
             int total = 0;
+
 
             string consulta =
                 "SELECT u.ubicacion AS UBICACION, COALESCE(SUM(l.stock),0) AS VOLUMENES " +
@@ -273,6 +302,7 @@ namespace ProyectoGithubProgramaciónC_.bbdd
 
                 dgv.DataSource = dt;
 
+                // Se recorren todas las filas para acumular el total de volúmenes de la sección
                 foreach (DataRow row in dt.Rows)
                     total += Convert.ToInt32(row["VOLUMENES"]);
             }
@@ -289,9 +319,12 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             return total;
         }
 
-
+       
         // INFORME 4 - CCAA Y LIBROS EDITADOS
+  
 
+        // Carga en el DataGridView el número de libros publicados agrupados
+        // por Comunidad Autónoma de edición, ordenados de mayor a menor
         public static void CargarGridInforme4(DataGridView dgv)
         {
             string consulta =
@@ -320,8 +353,12 @@ namespace ProyectoGithubProgramaciónC_.bbdd
             }
         }
 
+
         // INFORME 5 - TOP 5 CIUDADES
 
+
+        // Carga en el DataGridView las 5 ciudades con mayor número de libros
+        // editados en ellas, ordenadas de mayor a menor
         public static void CargarGridInforme5(DataGridView dgv)
         {
             string consulta =
